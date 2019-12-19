@@ -10,15 +10,15 @@ if [ -z "${USER}" ]; then
 fi
 
 if [ -z "${KEY}" ]; then
-  cat /home/${USER}/.ssh/authorized_keys
+  cat /data/ssh/${USER}/.ssh/authorized_keys
   exit 0
 fi
 
-adduser -D ${USER}
+adduser -h /data/ssh/${USER}/ -D ${USER}
 
-mkdir -pv /home/${USER}/.ssh
+mkdir -pv /data/ssh/${USER}/.ssh
 
 PORT=$(($(id -u ${USER})*10 + ${RANDOM}%10000))
 
-echo $KEY permitlisten=\":$PORT\" >> /home/${USER}/.ssh/authorized_keys
+echo $KEY permitlisten=\":$PORT\" >> /data/ssh/${USER}/.ssh/authorized_keys
 echo $PORT
