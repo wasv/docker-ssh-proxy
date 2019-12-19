@@ -1,0 +1,13 @@
+PermitRootLogin no
+
+PubkeyAuthentication no
+
+ChallengeResponseAuthentication no
+
+AllowAgentForwarding no
+AllowTcpForwarding yes
+GatewayPorts yes
+X11Forwarding no
+PermitTTY no
+PrintMotd no # pam does that
+TCPKeepAlive yes
