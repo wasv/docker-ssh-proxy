@@ -10,8 +10,8 @@ if [ -z "${USER}" ]; then
 fi
 
 if [ -z "${KEY}" ]; then
-  echo >&2 'Please set a KEY variable or pass a publickey as the second argument.'
-  exit 1
+  cat /home/${USER}/.ssh/authorized_keys
+  exit 0
 fi
 
 adduser -D ${USER}

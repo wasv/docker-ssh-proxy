@@ -1,4 +1,5 @@
 #!/bin/sh
 
-ssh-keygen -A
+mkdir -pv /data/ssh/etc/ssh
+ssh-keygen -A -f /data/ssh
 /usr/sbin/sshd -De

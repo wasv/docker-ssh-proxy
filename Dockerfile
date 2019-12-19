@@ -10,8 +10,10 @@ COPY sshd_config /etc/ssh/sshd_config
 COPY entry.sh /
 RUN chmod +x /entry.sh
 
-COPY newuser.sh /usr/bin/newuser
-RUN chmod +x /usr/bin/newuser
+COPY proxy-users.sh /usr/bin/proxy-users
+RUN chmod +x /usr/bin/proxy-users
+
+VOLUME ["/data/ssh"]
 
 EXPOSE 22
 ENTRYPOINT /entry.sh
