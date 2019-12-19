@@ -1,8 +1,7 @@
 FROM alpine:latest
 
-RUN apk update && \
-    apk upgrade && \
-    apk add coreutils openssh-server && \
+RUN apk update && apk upgrade && \
+    apk add coreutils openssh-server openssh-server-pam && \
     rm -rf /var/cache/apk/*
 RUN mkdir /etc/dropbear
 

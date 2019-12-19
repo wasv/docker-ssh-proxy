@@ -1,16 +1,24 @@
 #!/bin/sh
 
-if [ -n "$1" ]; then
-    USER=$1
-fi
+USER="$1"
 
-if [ -z "$USER" ]; then
-  echo >&2 'Please set an USER variable or pass a username as an argument.'
+KEY="$2"
+
+if [ -z "${USER}" ]; then
+  echo >&2 'Please set a USER variable or pass a username as the first argument.'
   exit 1
 fi
 
-PASSWD=`dd if=/dev/urandom bs=10 count=2 2>/dev/null | base32`
+if [ -z "${KEY}" ]; then
+  echo >&2 'Please set a KEY variable or pass a publickey as the second argument.'
+  exit 1
+fi
 
-adduser -D ${USER} && echo "${USER}:${PASSWD}" | chpasswd billie
+adduser -D ${USER}
 
-echo "Password: ${PASSWD}"
+mkdir -pv /home/${USER}/.ssh
+
+PORT=$(($(id -u ${USER})*10 + ${RANDOM}%10000))
+
+echo $KEY permitlisten=\":$PORT\" >> /home/${USER}/.ssh/authorized_keys
+echo $PORT

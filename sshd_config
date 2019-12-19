@@ -1,7 +1,9 @@
 PermitRootLogin no
 
-PubkeyAuthentication no
+PasswordAuthentication no
+PubkeyAuthentication yes
 
+UsePAM yes
 ChallengeResponseAuthentication no
 
 AllowAgentForwarding no
