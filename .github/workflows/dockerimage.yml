@@ -1,0 +1,19 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: wasv/docker-ssh-proxy/ssh-proxy
+        username: wasv
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
