@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 RUN apk update && apk upgrade && \
-    apk add coreutils openssh-server openssh-server-pam && \
+    apk add coreutils openssh-server && \
     rm -rf /var/cache/apk/*
 RUN mkdir /etc/dropbear
 
@@ -13,7 +13,7 @@ RUN chmod +x /entry.sh
 COPY proxy-users.sh /usr/bin/proxy-users
 RUN chmod +x /usr/bin/proxy-users
 
-VOLUME ["/data/ssh"]
+VOLUME ["/data/auth_keys", "/data/host_keys"]
 
 EXPOSE 22
 ENTRYPOINT /entry.sh

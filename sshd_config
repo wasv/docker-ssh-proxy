@@ -1,14 +1,16 @@
 PermitRootLogin no
 
-HostKey /data/ssh/etc/ssh/ssh_host_rsa_key
-HostKey /data/ssh/etc/ssh/ssh_host_dsa_key
-HostKey /data/ssh/etc/ssh/ssh_host_ecdsa_key
-HostKey /data/ssh/etc/ssh/ssh_host_ed25519_key
+HostKey /data/host_keys/etc/ssh/ssh_host_rsa_key
+HostKey /data/host_keys/etc/ssh/ssh_host_dsa_key
+HostKey /data/host_keys/etc/ssh/ssh_host_ecdsa_key
+HostKey /data/host_keys/etc/ssh/ssh_host_ed25519_key
+
+AuthorizedKeysFile /data/auth_keys/%U
 
 PasswordAuthentication no
 PubkeyAuthentication yes
 
-UsePAM yes
+UsePAM no
 ChallengeResponseAuthentication no
 
 AllowAgentForwarding no
